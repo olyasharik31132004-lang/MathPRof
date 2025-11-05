@@ -655,11 +655,11 @@
                 </div>
             </div>
             
-            <button class="restart-btn" onclick="restartTest()">Пройти тест еще раз</button>
+            <button class="restart-btn" onclick="startTest()">Пройти тест еще раз</button>
         </div>
         
         <div class="footer">
-            <p>© 2024 Математический профиль | Исследование стилей математического мышления</p>
+            <p>© 2025 Математический профиль | Исследование стилей математического мышления</p>
         </div>
     </div>
 
