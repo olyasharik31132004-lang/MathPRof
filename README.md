@@ -655,7 +655,7 @@
                 </div>
             </div>
             
-            <button class="restart-btn" onclick="startTest()">Пройти тест еще раз</button>
+            <button class="restart-btn" onclick="restartTest()">Пройти тест еще раз</button>
         </div>
         
         <div class="footer">
