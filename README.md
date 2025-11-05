@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Математический профиль | Тест на стиль мышления</title>
     <meta name="description" content="Определи свой математический профиль. Узнай, как твой ум обрабатывает цифры и логику">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --emerald-dark: #0d3b2e;
-            --emerald-medium: #1a6b53;
-            --emerald-light: #27ae60;
-            --emerald-bright: #2ecc71;
-            --emerald-pale: #ecf8f3;
-            --gold: #d4af37;
-            --silver: #bdc3c7;
+            --deep-blue: #1a1a2e;
+            --electric-blue: #0ea5e9;
+            --neon-pink: #ec4899;
+            --dark-purple: #4c1d95;
+            --light-bg: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-light: #f8fafc;
+            --text-gray: #94a3b8;
         }
         
         * {
@@ -24,24 +25,26 @@
         }
         
         body {
-            font-family: 'Source Sans Pro', sans-serif;
-            background: linear-gradient(135deg, var(--emerald-pale) 0%, #ffffff 100%);
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--light-bg) 50%, var(--dark-purple) 100%);
             min-height: 100vh;
             padding: 20px;
             line-height: 1.7;
-            color: var(--emerald-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
         }
         
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: 20px;
             padding: 50px 40px;
-            box-shadow: 0 10px 30px rgba(13, 59, 46, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
-            border: 1px solid var(--emerald-pale);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
         }
         
         .container::before {
@@ -50,45 +53,69 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--emerald-medium), var(--emerald-light));
-        }
-        
-        .math-symbol {
-            position: absolute;
-            font-size: 80px;
-            opacity: 0.03;
-            color: var(--emerald-dark);
-            font-weight: bold;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(14, 165, 233, 0.1), rgba(236, 72, 153, 0.1), transparent);
             z-index: 0;
         }
         
-        .symbol-1 { top: 30px; right: 40px; }
-        .symbol-2 { bottom: 60px; left: 50px; }
-        .symbol-3 { top: 180px; left: 60px; }
-        .symbol-4 { bottom: 120px; right: 70px; }
+        .math-graphics {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.1;
+        }
+        
+        .graphic-1 {
+            top: 10%;
+            right: 5%;
+            width: 150px;
+            height: 150px;
+            background: conic-gradient(from 0deg, var(--electric-blue), var(--neon-pink), var(--electric-blue));
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+        
+        .graphic-2 {
+            bottom: 10%;
+            left: 5%;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, var(--neon-pink), var(--electric-blue));
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .graphic-3 {
+            top: 40%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--electric-blue);
+            border-radius: 20px;
+            animation: pulse 4s ease-in-out infinite;
+        }
         
         h1 {
-            font-family: 'Playfair Display', serif;
             text-align: center;
-            color: var(--emerald-dark);
+            color: var(--text-light);
             margin-bottom: 20px;
-            font-size: 2.8em;
+            font-size: 3em;
             font-weight: 700;
             position: relative;
             z-index: 1;
-            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--electric-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .subtitle {
             text-align: center;
-            color: var(--emerald-medium);
+            color: var(--text-gray);
             margin-bottom: 50px;
             font-size: 1.3em;
             font-weight: 300;
             position: relative;
             z-index: 1;
-            font-style: italic;
         }
         
         .hero-section {
@@ -99,17 +126,20 @@
         }
         
         .math-icon {
-            font-size: 4em;
+            font-size: 5em;
             margin-bottom: 30px;
-            color: var(--emerald-medium);
-            opacity: 0.8;
+            background: linear-gradient(135deg, var(--electric-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: bounce 2s ease-in-out infinite;
         }
         
         .intro-text {
             font-size: 1.2em;
             line-height: 1.8;
             margin-bottom: 40px;
-            color: var(--emerald-dark);
+            color: var(--text-light);
             text-align: center;
             max-width: 600px;
             margin-left: auto;
@@ -117,11 +147,11 @@
         }
         
         .start-btn {
-            padding: 18px 45px;
-            background: var(--emerald-medium);
+            padding: 20px 50px;
+            background: linear-gradient(135deg, var(--electric-blue), var(--neon-pink));
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 15px;
             font-size: 1.2em;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -130,6 +160,7 @@
             position: relative;
             overflow: hidden;
             letter-spacing: 0.5px;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
         }
         
         .start-btn::before {
@@ -139,76 +170,67 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
             transition: left 0.5s;
         }
         
         .start-btn:hover {
-            background: var(--emerald-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.4);
         }
         
         .start-btn:hover::before {
             left: 100%;
         }
         
-        .facts-grid {
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin: 50px 0;
         }
         
-        .fact-card {
-            background: var(--emerald-pale);
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 4px solid var(--emerald-light);
-            transition: transform 0.3s ease;
-        }
-        
-        .fact-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .fact-card h3 {
-            color: var(--emerald-dark);
-            margin-bottom: 15px;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3em;
-        }
-        
-        .quote-section {
-            background: linear-gradient(135deg, var(--emerald-medium), var(--emerald-light));
-            color: white;
-            padding: 40px;
-            border-radius: 8px;
-            margin: 40px 0;
-            text-align: center;
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
         }
         
-        .quote-section::before {
-            content: '"';
-            font-size: 80px;
+        .feature-card::before {
+            content: '';
             position: absolute;
-            top: 10px;
-            left: 30px;
-            opacity: 0.2;
-            font-family: 'Playfair Display', serif;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.1), transparent);
+            transition: left 0.5s;
         }
         
-        .quote-text {
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--electric-blue);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .feature-card:hover::before {
+            left: 100%;
+        }
+        
+        .feature-card h3 {
+            color: var(--text-light);
+            margin-bottom: 15px;
             font-size: 1.3em;
-            font-style: italic;
-            margin-bottom: 20px;
-            line-height: 1.6;
+            font-weight: 600;
         }
         
-        .quote-author {
-            font-weight: 600;
-            opacity: 0.9;
+        .feature-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
         }
         
         /* Стили для теста */
@@ -224,27 +246,38 @@
         
         .progress-text {
             text-align: center;
-            color: var(--emerald-medium);
+            color: var(--text-light);
             margin-bottom: 15px;
-            font-size: 1em;
+            font-size: 1.1em;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
         
         .progress-bar {
             width: 100%;
-            height: 6px;
-            background: var(--emerald-pale);
-            border-radius: 3px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
             overflow: hidden;
             position: relative;
         }
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--emerald-medium), var(--emerald-light));
+            background: linear-gradient(90deg, var(--electric-blue), var(--neon-pink));
             width: 0%;
             transition: width 0.5s ease;
+            position: relative;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 20px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3));
         }
         
         .question-container {
@@ -253,35 +286,38 @@
         
         .question-container.active {
             display: block;
-            animation: fadeSlide 0.6s ease-out;
+            animation: slideUp 0.6s ease-out;
         }
         
         .question {
-            font-size: 1.4em;
-            color: var(--emerald-dark);
-            margin-bottom: 35px;
+            font-size: 1.5em;
+            color: var(--text-light);
+            margin-bottom: 40px;
             text-align: center;
             font-weight: 600;
-            font-family: 'Playfair Display', serif;
             line-height: 1.5;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .answers {
             display: grid;
-            gap: 12px;
+            gap: 15px;
             margin-bottom: 40px;
         }
         
         .answer-btn {
-            padding: 20px;
-            border: 2px solid #e8f5e8;
-            border-radius: 8px;
-            background: white;
+            padding: 20px 25px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
             font-size: 1.05em;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: left;
-            color: var(--emerald-dark);
+            color: var(--text-light);
             position: relative;
             overflow: hidden;
         }
@@ -293,14 +329,15 @@
             top: 0;
             height: 100%;
             width: 0;
-            background: var(--emerald-pale);
+            background: linear-gradient(90deg, rgba(14, 165, 233, 0.2), rgba(236, 72, 153, 0.2));
             transition: width 0.3s ease;
             z-index: -1;
         }
         
         .answer-btn:hover {
-            border-color: var(--emerald-light);
-            transform: translateX(8px);
+            border-color: var(--electric-blue);
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(14, 165, 233, 0.2);
         }
         
         .answer-btn:hover::before {
@@ -315,88 +352,138 @@
         }
         
         .result-card {
-            background: white;
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 8px 25px rgba(13, 59, 46, 0.1);
             margin-bottom: 30px;
-            border: 1px solid var(--emerald-pale);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         
         .result-type {
-            font-size: 2em;
-            color: var(--emerald-dark);
+            font-size: 2.5em;
+            color: transparent;
             margin-bottom: 20px;
             font-weight: 700;
-            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, var(--electric-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .result-score {
-            font-size: 1.1em;
-            color: var(--emerald-medium);
+            font-size: 1.2em;
+            color: var(--text-gray);
             margin-bottom: 25px;
-            padding: 10px 25px;
-            background: var(--emerald-pale);
-            border-radius: 20px;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
             display: inline-block;
             font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .result-description {
             font-size: 1.1em;
             line-height: 1.7;
-            color: var(--emerald-dark);
+            color: var(--text-light);
             margin-bottom: 25px;
             text-align: left;
         }
         
-        .result-strengths {
-            text-align: left;
+        .result-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             margin: 30px 0;
-            padding: 25px;
-            background: var(--emerald-pale);
-            border-radius: 8px;
-            border-left: 4px solid var(--emerald-light);
         }
         
-        .result-strengths h4 {
-            color: var(--emerald-dark);
+        .strengths-box, .professions-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+        }
+        
+        .strengths-box h4, .professions-box h4 {
+            color: var(--text-light);
             margin-bottom: 15px;
-            font-family: 'Playfair Display', serif;
             font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        .profession-list {
+            list-style: none;
+        }
+        
+        .profession-list li {
+            color: var(--text-gray);
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .profession-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--electric-blue);
         }
         
         .restart-btn {
-            padding: 15px 35px;
-            background: var(--emerald-medium);
+            padding: 18px 40px;
+            background: linear-gradient(135deg, var(--electric-blue), var(--neon-pink));
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 1.1em;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
             margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
         }
         
         .restart-btn:hover {
-            background: var(--emerald-light);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.4);
         }
         
         .footer {
             text-align: center;
             margin-top: 50px;
             padding-top: 30px;
-            border-top: 1px solid var(--emerald-pale);
-            color: var(--emerald-medium);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-gray);
             font-size: 0.9em;
         }
         
-        @keyframes fadeSlide {
+        /* Анимации */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes slideUp {
             from { 
                 opacity: 0; 
-                transform: translateY(20px); 
+                transform: translateY(30px); 
             }
             to { 
                 opacity: 1; 
@@ -424,6 +511,7 @@
             
             .question {
                 font-size: 1.2em;
+                padding: 20px;
             }
             
             .answer-btn {
@@ -431,11 +519,15 @@
                 font-size: 1em;
             }
             
-            .math-symbol {
-                font-size: 60px;
+            .math-graphics {
+                display: none;
             }
             
-            .facts-grid {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .result-details {
                 grid-template-columns: 1fr;
             }
         }
@@ -443,70 +535,40 @@
 </head>
 <body>
     <div class="container">
-        <!-- Математические символы как фон -->
-        <div class="math-symbol symbol-1">∫</div>
-        <div class="math-symbol symbol-2">∑</div>
-        <div class="math-symbol symbol-3">π</div>
-        <div class="math-symbol symbol-4">∞</div>
+        <!-- Графические элементы -->
+        <div class="math-graphics graphic-1"></div>
+        <div class="math-graphics graphic-2"></div>
+        <div class="math-graphics graphic-3"></div>
         
         <!-- Главная страница -->
         <div id="main-page" class="fade-in">
             <h1>Математический профиль</h1>
-            <p class="subtitle">Раскрой уникальные особенности своего мышления</p>
+            <p class="subtitle">Раскрой потенциал своего аналитического мышления</p>
             
             <div class="hero-section">
-                <div class="math-icon">∫∑</div>
+                <div class="math-icon">∫∑π∞</div>
                 <p class="intro-text">
-                    Математика — это не просто цифры и формулы. Это язык, на котором говорит Вселенная, 
-                    инструмент для понимания закономерностей и способ развития критического мышления. 
-                    Узнай, как именно твой ум обрабатывает информацию и решает задачи.
+                    Открой свой уникальный математический профиль. Узнай, как твой мозг обрабатывает информацию, 
+                    решает задачи и находит нестандартные подходы. Тест определит твой стиль мышления и подскажет 
+                    направления для развития.
                 </p>
                 
                 <button class="start-btn" onclick="startTest()">Начать диагностику</button>
             </div>
             
-            <div class="facts-grid">
-                <div class="fact-card">
-                    <h3>Математика и мозг</h3>
-                    <p>Исследования показывают, что решение математических задач активирует те же области мозга, что и творческие процессы. Математическое мышление развивает нейропластичность.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Аналитический подход</h3>
+                    <p>Определи, как ты структурируешь информацию и находишь закономерности в сложных системах.</p>
                 </div>
-                <div class="fact-card">
-                    <h3>История чисел</h3>
-                    <p>Первобытные люди использовали счёт до 3, всё что больше обозначали словом "много". Современная десятичная система пришла из Индии через арабские страны.</p>
+                <div class="feature-card">
+                    <h3>Творческое решение</h3>
+                    <p>Узнай, насколько гибок твой ум в поиске нестандартных решений математических задач.</p>
                 </div>
-                <div class="fact-card">
-                    <h3>Золотое сечение</h3>
-                    <p>Число φ (фи) ≈ 1.618 встречается в природе, искусстве и архитектуре. От расположения семян подсолнуха до пропорций Парфенона — везде прослеживается эта закономерность.</p>
+                <div class="feature-card">
+                    <h3>Практическое применение</h3>
+                    <p>Пойми, как ты используешь математические знания в реальных жизненных ситуациях.</p>
                 </div>
-            </div>
-            
-            <div class="quote-section">
-                <p class="quote-text">
-                    Математика выявляет порядок, симметрию и определённость, а это — важнейшие виды прекрасного.
-                </p>
-                <p class="quote-author">— Аристотель</p>
-            </div>
-            
-            <div class="facts-grid">
-                <div class="fact-card">
-                    <h3>Ноль — великое открытие</h3>
-                    <p>Концепция нуля как числа появилась в Индии в V веке. Без нуля не было бы современной математики, компьютеров и большей части технологий.</p>
-                </div>
-                <div class="fact-card">
-                    <h3>Математика в природе</h3>
-                    <p>Спирали Фибоначчи, фракталы, геометрические формы — математические принципы лежат в основе природных явлений от роста растений до формирования галактик.</p>
-                </div>
-                <div class="fact-card">
-                    <h3>Язык Вселенной</h3>
-                    <p>Галилей говорил, что математика — это язык, на котором написана книга природы. Современная физика подтверждает это: все фундаментальные законы выражаются математически.</p>
-                </div>
-            </div>
-            
-            <div class="quote-section">
-                <p class="quote-text">
-                    Чистая математика является, в своём роде, поэзией логической идеи.
-                </p>
-                <p class="quote-author">— Альберт Эйнштейн</p>
             </div>
         </div>
         
@@ -649,9 +711,18 @@
                 <div class="result-description" id="result-description">
                     Описание твоего математического профиля...
                 </div>
-                <div class="result-strengths">
-                    <h4>Сильные стороны:</h4>
-                    <div id="result-strengths">...</div>
+                
+                <div class="result-details">
+                    <div class="strengths-box">
+                        <h4>Сильные стороны</h4>
+                        <div id="result-strengths">...</div>
+                    </div>
+                    <div class="professions-box">
+                        <h4>Рекомендуемые профессии</h4>
+                        <ul class="profession-list" id="result-professions">
+                            <!-- Профессии будут добавлены через JavaScript -->
+                        </ul>
+                    </div>
                 </div>
             </div>
             
@@ -659,7 +730,7 @@
         </div>
         
         <div class="footer">
-            <p>© 2025 Математический профиль | Исследование стилей математического мышления</p>
+            <p>© 2024 Математический профиль | Исследование стилей математического мышления</p>
         </div>
     </div>
 
@@ -683,7 +754,6 @@
         ];
         
         function startTest() {
-            console.log('Кнопка нажата!'); // Для отладки
             document.getElementById('main-page').style.display = 'none';
             document.getElementById('test-section').style.display = 'block';
             updateProgress();
@@ -726,34 +796,97 @@
             const resultDiv = document.getElementById('result-section');
             resultDiv.style.display = 'block';
             
-            let mathType, description, strengths;
+            let mathType, description, strengths, professions;
             
             if (score >= 45) {
                 mathType = "Математический Аналитик";
-                description = "Ты обладаешь глубоким аналитическим мышлением и системным подходом к решению задач. Тебе нравится разбираться в фундаментальных принципах, доказывать теоремы и выстраивать логические цепочки. Твоя сила - в тщательности и внимании к деталям. Ты мог бы стать отличным исследователем, ученым или аналитиком.";
+                description = "Ты обладаешь глубоким аналитическим мышлением и системным подходом к решению задач. Тебе нравится разбираться в фундаментальных принципах, доказывать теоремы и выстраивать логические цепочки. Твоя сила - в тщательности и внимании к деталям.";
                 strengths = "Логическое мышление, системный подход, внимание к деталям, способность к глубокому анализу, математическая строгость, терпение в решении сложных задач";
+                professions = [
+                    "Data Scientist",
+                    "Финансовый аналитик",
+                    "Исследователь в науке",
+                    "Криптограф",
+                    "Актуарий",
+                    "Системный архитектор"
+                ];
             } else if (score >= 38) {
                 mathType = "Творческий Инноватор";
-                description = "Твой ум гибок и изобретателен! Ты находишь нестандартные подходы к решению задач и видишь математику как пространство для творчества. Олимпиадные задачи и головоломки - твоя стихия, где ты можешь проявить креативность и оригинальность мышления. Такой тип мышления ценен в разработке алгоритмов и решении сложных инженерных задач.";
+                description = "Твой ум гибок и изобретателен! Ты находишь нестандартные подходы к решению задач и видишь математику как пространство для творчества. Олимпиадные задачи и головоломки - твоя стихия, где ты можешь проявить креативность и оригинальность мышления.";
                 strengths = "Креативность, гибкость мышления, нестандартный подход, умение видеть закономерности, изобретательность, адаптивность";
+                professions = [
+                    "AI/ML инженер",
+                    "Геймдизайнер",
+                    "Архитектор",
+                    "Дизайнер интерфейсов",
+                    "Инновационный менеджер",
+                    "UX/UI дизайнер"
+                ];
             } else if (score >= 32) {
                 mathType = "Практик-Прикладник";
-                description = "Ты ценишь практическое применение математики и видишь ее ценность в реальном мире. Тебе интересно, как математические методы работают в технологиях, финансах, инженерии и других областях. Ты хорошо видишь связь между теорией и практикой. Этот подход делает тебя отличным кандидатом для работы в IT, аналитике или прикладных науках.";
+                description = "Ты ценишь практическое применение математики и видишь ее ценность в реальном мире. Тебе интересно, как математические методы работают в технологиях, финансах, инженерии и других областях. Ты хорошо видишь связь между теорией и практикой.";
                 strengths = "Практическое мышление, умение применять знания, решение реальных задач, техническая грамотность, результативность, ориентированность на применение";
+                professions = [
+                    "Инженер-программист",
+                    "Бизнес-аналитик",
+                    "Инженер-строитель",
+                    "Маркетолог-аналитик",
+                    "IT-консультант",
+                    "Проектный менеджер"
+                ];
             } else if (score >= 26) {
                 mathType = "Любознательный Исследователь";
-                description = "Твое главное качество - любопытство и желание понять суть вещей. Ты любишь исследовать новые математические концепции, задавать вопросы и находить связи между разными областями знаний. Для тебя математика - это увлекательное путешествие в мир открытий. Такой подход ценен в науке, образовании и междисциплинарных исследованиях.";
+                description = "Твое главное качество - любопытство и желание понять суть вещей. Ты любишь исследовать новые математические концепции, задавать вопросы и находить связи между разными областями знаний. Для тебя математика - это увлекательное путешествие в мир открытий.";
                 strengths = "Любознательность, исследовательский подход, умение задавать вопросы, поиск связей, стремление к пониманию, открытость новому";
+                professions = [
+                    "Научный сотрудник",
+                    "Преподаватель математики",
+                    "Методолог",
+                    "Аналитик в R&D",
+                    "Технический писатель",
+                    "Контент-менеджер"
+                ];
             } else {
                 mathType = "Перспективный Мыслитель";
-                description = "Твой математический потенциал только начинает раскрываться! Ты обладаешь ценным качеством - готовностью учиться и развиваться. Сейчас тебе может быть непросто, но именно такой подход - медленное, но уверенное освоение материала - часто приводит к глубинному пониманию. Твоя сила в упорстве и способности видеть математику в повседневной жизни. Продолжай в том же духе!";
+                description = "Твой математический потенциал только начинает раскрываться! Ты обладаешь ценным качеством - готовностью учиться и развиваться. Сейчас тебе может быть непросто, но именно такой подход - медленное, но уверенное освоение материала - часто приводит к глубинному пониманию.";
                 strengths = "Упорство, готовность учиться, практическая ориентация, наблюдательность, способность видеть математику в жизни, терпение, настойчивость";
+                professions = [
+                    "Бизнес-администратор",
+                    "Логист",
+                    "Менеджер проектов",
+                    "Специалист по данным",
+                    "Операционный менеджер",
+                    "Координатор процессов"
+                ];
             }
             
             document.getElementById('result-type').textContent = mathType;
             document.getElementById('result-score').textContent = `Баллов: ${score} из 60`;
             document.getElementById('result-description').textContent = description;
             document.getElementById('result-strengths').textContent = strengths;
+            
+            // Заполняем список профессий
+            const professionsList = document.getElementById('result-professions');
+            professionsList.innerHTML = '';
+            professions.forEach(profession => {
+                const li = document.createElement('li');
+                li.textContent = profession;
+                professionsList.appendChild(li);
+            });
         }
         
-       
+        function restartTest() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('result-section').style.display = 'none';
+            document.getElementById('main-page').style.display = 'block';
+            updateProgress();
+        }
+        
+        // Инициализация при загрузке
+        window.addEventListener('load', function() {
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
