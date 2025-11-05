@@ -63,10 +63,10 @@
             z-index: 0;
         }
         
-        .symbol-1 { top: 30px; right: 40px; content: '∫'; }
-        .symbol-2 { bottom: 60px; left: 50px; content: '∑'; }
-        .symbol-3 { top: 180px; left: 60px; content: 'π'; }
-        .symbol-4 { bottom: 120px; right: 70px; content: '∞'; }
+        .symbol-1 { top: 30px; right: 40px; }
+        .symbol-2 { bottom: 60px; left: 50px; }
+        .symbol-3 { top: 180px; left: 60px; }
+        .symbol-4 { bottom: 120px; right: 70px; }
         
         h1 {
             font-family: 'Playfair Display', serif;
@@ -630,4 +630,130 @@
             
             <div class="question-container" id="question-10">
                 <div class="question">Что для тебя значит "понять" математическую концепцию?</div>
-                <div class="
+                <div class="answers">
+                    <button class="answer-btn" onclick="answerQuestion(9, 0)">Уметь доказать теорему или вывести формулу</button>
+                    <button class="answer-btn" onclick="answerQuestion(9, 1)">Видеть красоту и логику в этой концепции</button>
+                    <button class="answer-btn" onclick="answerQuestion(9, 2)">Применять ее для решения практических задач</button>
+                    <button class="answer-btn" onclick="answerQuestion(9, 3)">Объяснить ее кому-то другому</button>
+                    <button class="answer-btn" onclick="answerQuestion(9, 4)">Связать с другими известными концепциями</button>
+                    <button class="answer-btn" onclick="answerQuestion(9, 5)">Найти ей аналогию в реальном мире</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Раздел результатов -->
+        <div id="result-section" class="result-section">
+            <div class="result-card">
+                <div class="result-type" id="result-type">Аналитик</div>
+                <div class="result-score" id="result-score">Баллов: 0 из 60</div>
+                <div class="result-description" id="result-description">
+                    Описание твоего математического профиля...
+                </div>
+                <div class="result-strengths">
+                    <h4>Сильные стороны:</h4>
+                    <div id="result-strengths">...</div>
+                </div>
+            </div>
+            
+            <button class="restart-btn" onclick="restartTest()">Пройти тест еще раз</button>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 Математический профиль | Исследование стилей математического мышления</p>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+        const totalQuestions = 10;
+        
+        // Баллы за ответы для 10 вопросов по 6 вариантов
+        const points = [
+            [5, 4, 3, 4, 3, 4], // Вопрос 1
+            [5, 4, 3, 5, 4, 3], // Вопрос 2
+            [5, 3, 4, 3, 2, 4], // Вопрос 3
+            [4, 4, 3, 3, 5, 3], // Вопрос 4
+            [5, 3, 4, 4, 3, 4], // Вопрос 5
+            [5, 3, 3, 2, 3, 4], // Вопрос 6
+            [3, 4, 3, 3, 4, 3], // Вопрос 7
+            [3, 3, 4, 4, 4, 3], // Вопрос 8
+            [4, 5, 3, 4, 3, 3], // Вопрос 9
+            [5, 4, 3, 4, 4, 3]  // Вопрос 10
+        ];
+        
+        function startTest() {
+            console.log('Кнопка нажата!'); // Для отладки
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('test-section').style.display = 'block';
+            updateProgress();
+        }
+        
+        function answerQuestion(questionIndex, answerIndex) {
+            score += points[questionIndex][answerIndex];
+            currentQuestion++;
+            
+            if (currentQuestion < totalQuestions) {
+                showQuestion(currentQuestion);
+                updateProgress();
+            } else {
+                showResults();
+            }
+        }
+        
+        function showQuestion(questionNum) {
+            // Скрываем все вопросы
+            const questions = document.querySelectorAll('.question-container');
+            questions.forEach(question => {
+                question.classList.remove('active');
+            });
+            
+            // Показываем текущий вопрос
+            const currentQuestionElement = document.getElementById(`question-${questionNum + 1}`);
+            if (currentQuestionElement) {
+                currentQuestionElement.classList.add('active');
+            }
+        }
+        
+        function updateProgress() {
+            const progress = ((currentQuestion) / totalQuestions) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            document.getElementById('current-question').textContent = currentQuestion + 1;
+        }
+        
+        function showResults() {
+            document.getElementById('test-section').style.display = 'none';
+            const resultDiv = document.getElementById('result-section');
+            resultDiv.style.display = 'block';
+            
+            let mathType, description, strengths;
+            
+            if (score >= 45) {
+                mathType = "Математический Аналитик";
+                description = "Ты обладаешь глубоким аналитическим мышлением и системным подходом к решению задач. Тебе нравится разбираться в фундаментальных принципах, доказывать теоремы и выстраивать логические цепочки. Твоя сила - в тщательности и внимании к деталям. Ты мог бы стать отличным исследователем, ученым или аналитиком.";
+                strengths = "Логическое мышление, системный подход, внимание к деталям, способность к глубокому анализу, математическая строгость, терпение в решении сложных задач";
+            } else if (score >= 38) {
+                mathType = "Творческий Инноватор";
+                description = "Твой ум гибок и изобретателен! Ты находишь нестандартные подходы к решению задач и видишь математику как пространство для творчества. Олимпиадные задачи и головоломки - твоя стихия, где ты можешь проявить креативность и оригинальность мышления. Такой тип мышления ценен в разработке алгоритмов и решении сложных инженерных задач.";
+                strengths = "Креативность, гибкость мышления, нестандартный подход, умение видеть закономерности, изобретательность, адаптивность";
+            } else if (score >= 32) {
+                mathType = "Практик-Прикладник";
+                description = "Ты ценишь практическое применение математики и видишь ее ценность в реальном мире. Тебе интересно, как математические методы работают в технологиях, финансах, инженерии и других областях. Ты хорошо видишь связь между теорией и практикой. Этот подход делает тебя отличным кандидатом для работы в IT, аналитике или прикладных науках.";
+                strengths = "Практическое мышление, умение применять знания, решение реальных задач, техническая грамотность, результативность, ориентированность на применение";
+            } else if (score >= 26) {
+                mathType = "Любознательный Исследователь";
+                description = "Твое главное качество - любопытство и желание понять суть вещей. Ты любишь исследовать новые математические концепции, задавать вопросы и находить связи между разными областями знаний. Для тебя математика - это увлекательное путешествие в мир открытий. Такой подход ценен в науке, образовании и междисциплинарных исследованиях.";
+                strengths = "Любознательность, исследовательский подход, умение задавать вопросы, поиск связей, стремление к пониманию, открытость новому";
+            } else {
+                mathType = "Перспективный Мыслитель";
+                description = "Твой математический потенциал только начинает раскрываться! Ты обладаешь ценным качеством - готовностью учиться и развиваться. Сейчас тебе может быть непросто, но именно такой подход - медленное, но уверенное освоение материала - часто приводит к глубинному пониманию. Твоя сила в упорстве и способности видеть математику в повседневной жизни. Продолжай в том же духе!";
+                strengths = "Упорство, готовность учиться, практическая ориентация, наблюдательность, способность видеть математику в жизни, терпение, настойчивость";
+            }
+            
+            document.getElementById('result-type').textContent = mathType;
+            document.getElementById('result-score').textContent = `Баллов: ${score} из 60`;
+            document.getElementById('result-description').textContent = description;
+            document.getElementById('result-strengths').textContent = strengths;
+        }
+        
+       
