@@ -889,7 +889,7 @@
                 professionsList.appendChild(li);
             });
         }
-        function restartTest() {
+      function restartTest() {
     console.log('Перезапуск теста');
     
     // Сбрасываем переменные
@@ -903,19 +903,20 @@
     // Показываем главную страницу
     document.getElementById('main-page').style.display = 'block';
     
+    // ВАЖНО: Сбрасываем активный вопрос на первый
+    const questions = document.querySelectorAll('.question-container');
+    questions.forEach((question, index) => {
+        question.classList.remove('active');
+        // Активируем только первый вопрос
+        if (index === 0) {
+            question.classList.add('active');
+        }
+    });
+    
     // Сбрасываем прогресс-бар
     updateProgress();
     
-    // Сбрасываем активный вопрос на первый
-    const questions = document.querySelectorAll('.question-container');
-    questions.forEach(question => {
-        question.classList.remove('active');
-    });
-    
-    // Активируем первый вопрос
-    document.getElementById('question-1').classList.add('active');
-    
-    console.log('Тест перезапущен, текущий вопрос:', currentQuestion + 1);
+    console.log('Тест перезапущен, текущий вопрос: 1');
 }
         // function restartTest() {
         //     currentQuestion = 0;
